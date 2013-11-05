@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% comment %}
+{% csrf_token %} cookies-seguridad
+{% form.as_p %} centrar formulario
+{% endcomment %}
+
+{% block content %}
+    <legend>Creando Hospital- Registro</legend>
+        <form action="{%url 'catalogo:crear'%}" method="POST">
+        {% csrf_token %}
+        {{ cookie }} <br>
+        <input type="submit" value="Guardar" class="btn"/>
+        </form>
+
+{% endblock %}
+
+

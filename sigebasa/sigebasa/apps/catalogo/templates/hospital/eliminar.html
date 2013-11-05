@@ -1,0 +1,9 @@
+<form action="/hospitales/borrar/{{ hospital.id }}" method="post">
+        {{ hospital.id }}
+        <p>{{ hospital.nombre}}</p>
+        <p>{{ hospital.direccion}}</p>
+        <p>{{ hospital.pedidos }}</p>
+        {% csrf_token%}
+        <input class="btn btn-danger" type="submit" value="Borrar" />
+        <a href="{% url 'catalogo:ver' %}" class="btn">Cancelar</a>
+</form>

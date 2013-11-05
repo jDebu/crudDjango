@@ -1,0 +1,6 @@
+ <form action="/hospitales/actualizar/{{ id }}" method="post" >
+        {{ form.as_p }}
+        {% csrf_token%}
+        <input class="btn btn-primary" type="submit" value="Save" />
+        <input name="cancel" class="btn" type="submit" value="Cancel"/>
+     </form>

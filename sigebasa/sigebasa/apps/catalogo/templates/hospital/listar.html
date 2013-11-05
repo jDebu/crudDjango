@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+        <a href="{% url 'catalogo:crear' %}" class="btn btn-primary"> + Hospital</a>
+        {% if hospitales.count > 0 %}
+        <legend>Listando los registros de hospitales</legend>
+        <table class="table table-hover table-striped table-bordered" id="aa">
+            <thead>
+            <tr>
+            <td>Nombre</td>
+            <td>Direccion</td>
+            <td>Estado</td>
+            <td>Pedidos</td>
+            <td class="sorting_disabled">Accion</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for hospital in hospitales %}
+            <tr>
+                <td>{{ hospital.nombre }}</td>
+                <td>{{ hospital.direccion }}</td>
+                <td>{{ hospital.status }}</td>
+                <td>{{ hospital.pedidos }}</td>
+                <td> <a href="{% url 'catalogo:actualizar' hospital.id %}"  data-target="#myModal" data-toggle="modal" class="btn btn-info">
+
+                    <i class="icon-edit" title="Alterar"></i>
+                    </a>
+                    <a href="{% url 'catalogo:borrar' hospital.id %}" data-target="#myModal2"  data-toggle="modal" class="btn btn-danger">
+                    <i class="icon-trash" title="Excluir"></i>
+                    </a>
+
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+
+
+
+  <div class="modal hide" id="myModal">
+
+
+
+        <div class="modal-header">
+         <!--bug  <button  type="button" class="close" data-dismiss="modal">×</button> -->
+            <h3>Editar</h3>
+
+        </div>
+        <div class="modal-body">
+        {% include 'hospital/actualizar.html' %}
+        </div>
+         <!--  <div class="modal-footer">
+              <input class="btn btn-primary" type="submit" value="Save" />
+               <input name="cancel" class="btn" type="submit" value="Cancel"/>
+        </div>-->
+
+    </div>
+ <div class="modal hide" id="myModal2">
+
+
+        <div class="modal-header">
+         <!--bug  <button  type="button" class="close" data-dismiss="modal">×</button> -->
+            <h3>Eliminar</h3>
+        </div>
+        <div class="modal-body">
+        {% include 'hospital/eliminar.html' %}
+        </div>
+         <!--  <div class="modal-footer">
+              <input class="btn btn-primary" type="submit" value="Save" />
+               <input name="cancel" class="btn" type="submit" value="Cancel"/>
+        </div>-->
+
+ </div>
+
+    <script>
+                  $(document).ready(function() {
+                  $('#aa').dataTable();
+                } );
+    </script>
+{% endblock %}
+
